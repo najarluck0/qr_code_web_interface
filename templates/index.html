@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Apply a subtle background with soft gradient (ChatGPT-like colors) */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f7f7f7;  /* Light gray background for a clean look */
+            color: #333; /* Dark gray text for readability */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* Header Style */
+        header {
+            background-color: #1e1e1e; /* Dark gray background */
+            color: #fff; /* White text */
+            padding: 20px 0;
+            font-size: 2.5em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Main Content Area */
+        .content {
+            padding: 40px 20px;
+            margin-top: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow around the content */
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            font-size: 1.2em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f1f1f1; /* Light gray background for inputs */
+            color: #333; /* Dark text for input */
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            background-color: #ffffff; /* White background when focused */
+            border-color: #4a90e2; /* Blue border when focused */
+        }
+
+        input[type="submit"] {
+            padding: 12px 30px;
+            background-color: #4a90e2; /* Blue background for button */
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #357ABD; /* Darker blue on hover */
+        }
+
+        .qr-code-container {
+            margin-top: 30px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #1e1e1e;
+            color: #fff;
+            padding: 10px 0;
+            font-size: 1em;
+        }
+
+        /* Optional Sticker */
+        .sticker {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: url('https://example.com/sticker-image.png') no-repeat center center;
+            background-size: contain;
+            width: 50px;
+            height: 50px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        QR Code Generator
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="content">
+        <h2>Generate Your QR Code</h2>
+        <form method="POST" action="/generate">
+            <div class="input-container">
+                <label for="data" style="font-size: 1.2em; font-weight: bold;">Enter URL or Text:</label><br>
+                <input type="text" id="data" name="data" placeholder="Enter URL or text to encode" required>
+            </div>
+            <input type="submit" value="Generate QR Code">
+        </form>
+
+        <!-- Display QR Code -->
+        {% if qr_code_url %}
+        <div class="qr-code-container">
+            <h3>Your QR Code:</h3>
+            <img src="{{ qr_code_url }}" alt="QR Code" style="border: 2px solid #ddd; padding: 10px;">
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 QR Code Generator. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Sticker (Optional) -->
+    <div class="sticker"></div>
+
+</body>
+</html>
